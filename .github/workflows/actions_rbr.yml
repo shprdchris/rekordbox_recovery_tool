@@ -1,0 +1,20 @@
+name: actions_rbr
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out respository under $GITHUB_WORKSPACE, so job can access
+      # it
+      - uses: actions/checkout@v2
+      # Run pre-commit
+      - run: pip install pre-commit
+      - run: pre-commit run -a
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Install deps
+      - run: sudo apt install -y -qq cmdtest
+      # Run tests
+      - run: . check

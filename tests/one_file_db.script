@@ -1,0 +1,30 @@
+# Test for correct generation of an RBR XML
+# for a music collection of one file
+#!/bin/sh
+set -e
+
+# Set path variables
+show_warning_flags=True
+music_root="$DATADIR"/root
+out_db=$DATADIR/one_file_db.xml
+venv_path=$DATADIR/.venv
+
+# Activate the virtual environment for python
+python3 -m venv $venv_path
+. $venv_path/bin/activate
+
+# Install required dependnecies
+pip install mutagen -q
+
+# TODO Create the db, set all variables
+python3 -c "import rbrDatabase; db_main =rbrDatabase.rbrDatabase();\
+	db_main.add_recursively('${music_root}',${show_warning_flags});\
+	db_main.write_pretty('$out_db')"
+
+# Deactivate virtual environment
+deactivate
+
+# Cat the contents of the resulting xml
+# TODO use env variables for path of entries
+cat $out_db | sed -e "s|${DATADIR}|DATADIR|" | \
+	sed -e "s|\x0D||"
