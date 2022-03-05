@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<DJ_PLAYLISTS Version="1.0.0">
+	<PRODUCT Name="rekordbox" Version="5.8.6" Company="Pioneer DJ"/>
+	<COLLECTION Entries="1">
+		<TRACK TrackID="1" Name="Chopin, Etude Op. 10, No. 9" Kind="MP3 File" Size="2822400000" Artist="Leo Sirota" TrackNumber="1" Album="" Composer="Leo Sirota" Comments="URL: http://freemusicarchive.org/music/Leo_Sirota/A_Chopin_Recital/sirotachopinmp3
+Comments: http://freemusicarchive.org/
+Curator: Arbiter Records
+Copyright: Attribution-Noncommercial-Share Alike 3.0 United States: http://creativecommons.org/licenses/by-nc-sa/3.0/us/" Year="" BitRate="64000" SampleRate="44100" TotalTime="160.19225" DiscNumber="" AverageBpm="" DateAdded="2022-03-05" PlayCount="" Rating="" Location="file://localhost/DATADIR/root/subdir_one/chopin_1.mp3"/>
+	</COLLECTION>
+	<PLAYLISTS>
+		<NODE Name="ROOT" Type="0" Count="1" KeyType="0">
+			<NODE Name="subdir_one" Type="1" Entries="1" KeyType="0">
+				<TRACK Key="1"/>
+			</NODE>
+		</NODE>
+	</PLAYLISTS>
+</DJ_PLAYLISTS>

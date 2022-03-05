@@ -10,4 +10,11 @@ jobs:
       # Run pre-commit
       - run: pip install pre-commit
       - run: pre-commit run -a
-  # test: TODO
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Install deps
+      - run: sudo apt install -y -qq cmdtest
+      # Run tests
+      - run: . check
