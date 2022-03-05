@@ -1,3 +1,5 @@
+# Test for correct generation of an RBR XML
+# for a music collection of one file
 #!/bin/sh
 set -e
 
