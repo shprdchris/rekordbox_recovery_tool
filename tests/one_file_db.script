@@ -29,5 +29,6 @@ deactivate
 # NOTE: the XML produced on my local machine uses the 0xA newline, and
 # the XML of the pipeline uses the 0xD newline.
 # The safest bet is to remove the newlines altogether.
+# TODO use env variables for path of entries
 cat $out_db | sed -e "s|${DATADIR}|DATADIR|" | \
 	sed -e "s|\x0D||"
