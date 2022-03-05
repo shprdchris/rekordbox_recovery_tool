@@ -1,3 +1,5 @@
+# Test for correct generation of an RBR XML
+# for a music collection of one file
 #!/bin/sh
 set -e
 
@@ -26,5 +28,6 @@ deactivate
 # NOTE: my local machine produces an xml with the 0xD newline, and the
 # pipline uses the 0xA newline.
 # The safest option is to remove the newlines altogether.
+
 cat $out_db | sed -e "s|${DATADIR}|DATADIR|" | \
 	sed -e "s|\x0D||"
