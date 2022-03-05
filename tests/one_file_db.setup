@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+# Create the folder structure
+music_root="$DATADIR"/root
+mkdir $music_root
+mkdir "$music_root"/subdir_one
+
+# Populate with files
+cp tests/track_samples/chopin_1.mp3 "${music_root}"/subdir_one
+
+# Datbase location
+db_path="$DATADIR"/db_out
