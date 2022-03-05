@@ -24,4 +24,5 @@ deactivate
 
 # Cat the contents of the resulting xml
 # TODO use env variables for path of entries
-cat $out_db | sed -e "s|${DATADIR}|DATADIR|"
+cat $out_db | sed -e "s|${DATADIR}|DATADIR|" | \
+	sed -e "s|\x0D||"
