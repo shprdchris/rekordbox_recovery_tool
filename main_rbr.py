@@ -1,5 +1,8 @@
 # main_rbr.py
 # Chris Shepherd, Codethink Ltd, 2021-01-18
+# This is a somewhat hacked-together program to convert nested subfolders into
+# Rekordbox-ready xml.
+# I'm in no way affiliated with pioneer.
 
 import os
 import tkinter as tk

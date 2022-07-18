@@ -14,6 +14,7 @@ import track
 
 
 class rbrDatabase:
+    # Initiate base xml structure
     def __init__(self):
 
         self.root = Element("DJ_PLAYLISTS")
@@ -36,7 +37,11 @@ class rbrDatabase:
 
     # ------------------------------------------------------------------------------
 
+    @classmethod
     def added_folder(self, parent, name, count):
+        """
+        Add folder as node to xml and return it
+        """
         current_node = SubElement(parent, "NODE")
         current_node.set("Name", name)
         current_node.set("Type", "0")
@@ -46,7 +51,11 @@ class rbrDatabase:
 
     # ------------------------------------------------------------------------------
 
+    @classmethod
     def added_playlist(self, parent, name, entries):
+        """
+        Add playlist to xml and return it
+        """
         current_node = SubElement(parent, "NODE")
         current_node.set("Name", name)
         current_node.set("Type", "1")
@@ -56,7 +65,12 @@ class rbrDatabase:
 
     # ------------------------------------------------------------------------------
 
+    @classmethod
     def files_surviving(self, files):
+        """
+        List of file paths filtered by their extension.
+        Only allow rekordbox-compatible formats
+        """
         # TODO inefficient? duplicating list rather than removing a few elements.
         files_surviving = []
         for file in files:
@@ -70,7 +84,11 @@ class rbrDatabase:
 
     # ------------------------------------------------------------------------------
 
+    @classmethod
     def print_warning_message(self, specific_submessage, file_name):
+        """
+        Callback if file type is unsupported.
+        """
         print(
             "WARNING: ",
             specific_submessage,
@@ -84,6 +102,10 @@ class rbrDatabase:
     def added_track_id(
         self, abs_track_path, file_name, file_extension, show_warning_flags
     ):
+        """
+        If file is of an acceptable format, read metadata and add to collection.
+        If warnings are enabled, warns for backwards-compatabiliy issues.
+        """
         # Metadata is read in track class
         current_node = SubElement(self.collection, "TRACK")
         # .mp3, .flac, .wav have different metadata formats
@@ -112,17 +134,22 @@ class rbrDatabase:
         try:
             if (int(track_temp.metadata["SampleRate"]) > 48000) and show_warning_flags:
                 self.print_warning_message("sample rate exceeding 48 kHz", file_name)
-        except Exception:
+        # TODO less general error handling
+        except Exception as e:
+            print(e)
             print("ERROR: no sample rate found for file ", file_name)
         self.collection.set(
             "Entries", track_temp.metadata["TrackID"]
         )  # TODO inefficient to do every time
-        # TODO inefficient to do every time
         return track_temp.track_ID
 
     # ------------------------------------------------------------------------------
 
     def add_recursively(self, root_dir, show_warning_flags):
+        """
+        Recursively search through file root, adding nodes.
+        Adds folders, playlists, files and labels as such.
+        """
         if not os.path.isdir(root_dir):
             print("ERROR: root doesn't exist. Try again.")
         else:
@@ -167,8 +194,9 @@ class rbrDatabase:
 
     # ------------------------------------------------------------------------------
 
-    # Return a pretty-printed XML string for the element
+    @classmethod
     def prettify(self, elem):
+        """Prettify xml element"""
         rough_string = tostring(elem, "utf-8")
         reparsed = minidom.parseString(rough_string)
         return reparsed.toprettyxml()
@@ -177,6 +205,8 @@ class rbrDatabase:
 
     # For debugging use
     def print_pretty(self):
+        """Print full xml in a pretty way."""
+
         print(self.prettify(self.root))
 
     # ------------------------------------------------------------------------------
