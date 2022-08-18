@@ -10,6 +10,28 @@ jobs:
       # Run pre-commit
       - run: pip install pre-commit
       - run: pre-commit run -a
+
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+              os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - run: pip install -r requirements.txt pyinstaller
+    - run: pyinstaller --onefile main_rbr.py
+    # Optionally verify that it works (provided that it does not need user interaction)
+    # - ./dist/main_rbr/main_rbr
+    - uses: actions/upload-artifact@v2
+      with:
+        path: dist/*
+  
   test:
     runs-on: ubuntu-latest
     steps:
