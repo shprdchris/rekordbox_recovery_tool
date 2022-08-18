@@ -32,6 +32,7 @@ jobs:
       with:
         path: dist/*
   
+        # tests might fail due to unicode nonsense, use your judgement in the logs
   test:
     runs-on: ubuntu-latest
     steps:
