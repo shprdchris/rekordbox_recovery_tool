@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-              os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+              os: ['windows-latest', 'macos-latest']
 
     steps:
     - uses: actions/checkout@v2
@@ -25,9 +25,9 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller --onefile main_rbr.py
+    - run: pyinstaller --onefile main_rbr.py -n rbr_tool
     # Optionally verify that it works (provided that it does not need user interaction)
-    # - ./dist/main_rbr/main_rbr
+    # - ./dist/rbr_tool/rbr_tool
     - uses: actions/upload-artifact@v2
       with:
         path: dist/*
