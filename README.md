@@ -10,9 +10,8 @@ With the RBR tool, organised DJs can avoid repeating the effort of organising th
 
 ## Running RBR tool
 
-* Download the correct pre-build executable from the folder of this name
-(NOTE: currently only compiled for Windows. The mac version is coming, please be patient)
-* Run the executable and follow the instructions
+* Download the pre-built executables (Mac and Windows available) from the CI artifacts 
+* Run the appropriate executable for your OS and follow the instructions
 * Open Rekordbox and select "preferences", "advanced settings".
 * For the option "xml location", select the .xml file produced by RBR tool.
 * Open the "view" option in the sidebar and enable the "xml database" option.
