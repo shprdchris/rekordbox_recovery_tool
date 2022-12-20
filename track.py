@@ -132,7 +132,7 @@ class trackFlac(track):
     # ------------------------------------------------------------------------------
 
     def set_all_flac(self):
-        for key in self.ID3_dict_keys:
+        for key in self.flac_dict_keys:
             self.set_flac_element(key)
 
     # ------------------------------------------------------------------------------
